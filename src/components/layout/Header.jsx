@@ -1,13 +1,14 @@
 //import React from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
 //TODO: simple navbar, add thinks
 
 function Header() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">TypeMasteryHub</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -15,7 +16,7 @@ function Header() {
           </Nav>
           <Nav className="">
             <NavDropdown
-              title="User"
+              title={<FaUser />}
               id="basic-nav-dropdown"
               align={{ lg: 'end' }}
             >
