@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const getIconByLabel = label =>
   label === 'Email' ? (
     <FaEnvelope />
-  ) : label === 'Username' ? (
+  ) : label === 'Username' || label === 'Email or Username' ? (
     <FaAddressCard />
   ) : (
     <FaLock />
@@ -27,6 +27,7 @@ function FormField({ label, ...props }) {
 
 FormField.propTypes = {
   label: PropTypes.string.isRequired,
+  feedback: PropTypes.string,
 };
 
 export default FormField;

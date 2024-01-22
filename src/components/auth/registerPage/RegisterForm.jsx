@@ -127,13 +127,19 @@ const RegisterForm = () => {
               />
             )}
           </Field>
-          <Button className="register-button mt-3" type="submit">
+          <Button className="auth-button register-button mt-3" type="submit">
             CREATE ACCOUNT
           </Button>
           <p className="mt-3">
             Have already an account?{' '}
             <Link to="/login" className="text-decoration-none">
               Login Here
+            </Link>
+          </p>
+          <p className="mt-3">
+            Want to go back to the main page?{' '}
+            <Link to="/" className="text-decoration-none">
+              Home
             </Link>
           </p>
         </Form>
