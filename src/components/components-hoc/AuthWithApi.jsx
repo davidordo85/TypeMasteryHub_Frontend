@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -14,25 +14,24 @@ function AuthWithApi({ apiSubmit }) {
       const [isLoading, setIsLoading] = React.useState(false);
       const navigate = useNavigate();
       const location = useLocation();
-      const isOk = React.useRef(false);
+      const [isOk, setIsOk] = React.useState(false);
 
       React.useEffect(() => {
-        if (isOk.current) {
+        if (isOk) {
           if (location.pathname === '/login') {
             navigate('/');
           } else if (location.pathname === '/register') {
             navigate('/login');
           }
         }
-      }, [location.pathname, navigate]);
+      }, [location.pathname, navigate, isOk]);
 
       const handleSubmit = async credentials => {
         setError();
         setIsLoading(true);
         try {
           await apiSubmit(credentials);
-          console.log('todo ok');
-          isOk.current = true;
+          setIsOk(true);
         } catch (error) {
           setError(error);
         } finally {

@@ -1,10 +1,12 @@
 //import React from 'react';
 import FormField from '../../shared/formField/FormField';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Formik, Field } from 'formik';
+import AlertComponent from '../../shared/alertComponent/AlertComponent';
+import PropTypes from 'prop-types';
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSubmit, error, isLoading }) => {
   const initialValues = {
     email: '',
     username: '',
@@ -13,7 +15,7 @@ const RegisterForm = () => {
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    //onSubmit(values);
+    onSubmit(values);
     setSubmitting(false);
   };
 
@@ -37,7 +39,7 @@ const RegisterForm = () => {
           errors.username = 'Username is required.';
         } else if (values.username.length < 3 || values.username.length > 50) {
           errors.username = 'Username must be between 3 and 50 characters.';
-        } else if (!/^[a-zA-Z\s']*$/i.test(values.username)) {
+        } else if (!/^[a-zA-Z0-9_\s-']*$/i.test(values.username)) {
           errors.username = 'Invalid characters in the username.';
         }
 
@@ -127,9 +129,27 @@ const RegisterForm = () => {
               />
             )}
           </Field>
-          <Button className="auth-button register-button mt-3" type="submit">
-            CREATE ACCOUNT
+          <Button
+            className="auth-button register-button mt-3 mb-3"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />{' '}
+                Loading...
+              </>
+            ) : (
+              'CREATE ACCOUNT'
+            )}
           </Button>
+          {error ? <AlertComponent error={error.message} /> : null}
           <p className="mt-3">
             Have already an account?{' '}
             <Link to="/login" className="text-decoration-none">
@@ -146,6 +166,12 @@ const RegisterForm = () => {
       )}
     </Formik>
   );
+};
+
+RegisterForm.propTypes = {
+  onSubmit: PropTypes.func,
+  error: PropTypes.object,
+  isLoading: PropTypes.bool,
 };
 
 export default RegisterForm;

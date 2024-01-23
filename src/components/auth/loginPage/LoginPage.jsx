@@ -8,7 +8,6 @@ import { AuthWithApi, compose } from '../../components-hoc';
 import { login } from '../../../api/auth';
 
 const LoginPage = ({ error, isLoading, handleSubmit }) => {
-  console.log(error, isLoading, handleSubmit);
   return (
     <div className="auth-container login-container">
       <Container>
