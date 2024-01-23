@@ -89,6 +89,10 @@
     opacity: 0.8;
 }
 
+label.form-check-label {
+    padding-top: 0.28rem;
+}
+
 @media (min-width: 768px) {
     .card-body {
         flex-direction: row;
