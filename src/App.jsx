@@ -1,21 +1,29 @@
+import React from 'react';
 import { Routes, Route } from 'react-router';
 import { WelcomePage, LoginPage, RegisterPage, Layout } from './components';
+import { PropTypes } from 'prop-types';
 
-function App() {
+function App({ isInitiallyLogged }) {
+  const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
+  const handleLogin = () => setIsLogged(true);
+  const handleLogout = () => setIsLogged(false);
   return (
     <Routes>
       <Route
         path="/"
         element={
-          <Layout>
+          <Layout isLogged={isLogged} onLogout={handleLogout}>
             <WelcomePage />
           </Layout>
         }
       />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>
   );
 }
 
+App.propTypes = {
+  isInitiallyLogged: PropTypes.bool.isRequired,
+};
 export default App;

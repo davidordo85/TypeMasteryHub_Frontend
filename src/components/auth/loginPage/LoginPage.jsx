@@ -4,7 +4,6 @@ import { Container, Card } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 import '../AuthPages.css';
 import { AuthWithApi, compose } from '../../components-hoc';
-
 import { login } from '../../../api/auth';
 
 const LoginPage = ({ error, isLoading, handleSubmit }) => {

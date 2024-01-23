@@ -2,10 +2,10 @@
 import Header from './Header';
 import PropTypes from 'prop-types';
 
-function Layout({ children }) {
+function Layout({ children, ...props }) {
   return (
     <div>
-      <Header />
+      <Header {...props} />
       <main>{children}</main>
       <footer>esto es el footer</footer>
     </div>

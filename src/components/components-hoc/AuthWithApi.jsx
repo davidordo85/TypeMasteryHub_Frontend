@@ -20,11 +20,12 @@ function AuthWithApi({ apiSubmit }) {
         if (isOk) {
           if (location.pathname === '/login') {
             navigate('/');
+            props.onLogin();
           } else if (location.pathname === '/register') {
             navigate('/login');
           }
         }
-      }, [location.pathname, navigate, isOk]);
+      }, [location.pathname, navigate, isOk, props]);
 
       const handleSubmit = async credentials => {
         setError();
@@ -53,6 +54,7 @@ function AuthWithApi({ apiSubmit }) {
       apiCall: PropTypes.func,
       apiSubmit: PropTypes.func,
       actionType: PropTypes.any,
+      onLogin: PropTypes.func,
     };
 
     AuthWithApiComponent.displayName = `WithApi(${getDisplayName(
