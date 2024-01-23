@@ -1,54 +1,70 @@
-//import React from 'react';
+import React from 'react';
 import { logout } from '../../api/auth';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaUser } from 'react-icons/fa';
+import './Header.css';
 import PropTypes from 'prop-types';
-//TODO: simple navbar, add thinks
 
 function Header({ isLogged, onLogout }) {
+  const [showOffcanvas, setShowOffcanvas] = React.useState(false);
+
   const handleLogoutClick = () => {
     logout().then(onLogout);
+    setShowOffcanvas(false);
   };
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">TypeMasteryHub</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#courses">Courses</Nav.Link>
+    <>
+      <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand as={Link} to="/">
+            TypeMasteryHub
+          </Navbar.Brand>
+          <Navbar.Toggle onClick={() => setShowOffcanvas(true)} />
+        </Container>
+      </Navbar>
+
+      <Offcanvas
+        show={showOffcanvas}
+        onHide={() => setShowOffcanvas(false)}
+        placement="end"
+        className="bg-dark text-white"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>TypeMasteryHub</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <Nav className="flex-column">
+            <Nav.Link as={Link} to="/courses" className="text-white">
+              Courses
+            </Nav.Link>
+            <hr />
+            {!isLogged ? (
+              <>
+                <Nav.Link as={Link} to="/login" className="text-white">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register" className="text-white">
+                  Register
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="#user" className="text-white">
+                  My courses
+                </Nav.Link>
+                <Nav.Link href="#user" className="text-white">
+                  Edit profile
+                </Nav.Link>
+                <Nav.Link onClick={handleLogoutClick} className="text-white">
+                  Logout
+                </Nav.Link>
+              </>
+            )}
           </Nav>
-          <Nav className="">
-            <NavDropdown
-              title={<FaUser />}
-              id="basic-nav-dropdown"
-              align={{ lg: 'end' }}
-            >
-              {!isLogged ? (
-                <>
-                  <NavDropdown.Item as={Link} to="/login">
-                    Login
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/register">
-                    Register
-                  </NavDropdown.Item>
-                </>
-              ) : (
-                <>
-                  <NavDropdown.Item href="#user">My courses</NavDropdown.Item>
-                  <NavDropdown.Item href="#user">Edit profile</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={handleLogoutClick}>
-                    Logout
-                  </NavDropdown.Item>
-                </>
-              )}
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   );
 }
 
