@@ -1,5 +1,6 @@
 //import React from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import PropTypes from 'prop-types';
 
 function Layout({ children, ...props }) {
@@ -7,10 +8,7 @@ function Layout({ children, ...props }) {
     <div>
       <Header {...props} />
       <main className="bg-secondary">{children}</main>
-      <footer>
-        {/* Foto de seppe machielsen:
-        https://www.pexels.com/es-es/foto/oscuro-internet-abstracto-conexion-14011035/ */}
-      </footer>
+      <Footer />
     </div>
   );
 }

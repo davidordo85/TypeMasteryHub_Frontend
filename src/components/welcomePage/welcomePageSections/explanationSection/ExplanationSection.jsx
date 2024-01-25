@@ -5,18 +5,19 @@ const ExplanationSection = () => {
   return (
     <section className="explanation-container p-5">
       <Container>
-        <h1 className="mb-1">No Account Required</h1>
+        <h1 className="mb-1">No se requiere cuenta</h1>
         <p>
-          However, if you choose to register, you can save your progress and
-          track your improvement effortlessly.
+          Sin embargo, si decides registrarte, puedes guardar tu progreso y
+          seguir tus mejoras sin esfuerzo.
         </p>
       </Container>
       <hr className="explanation-separator" />
       <Container>
-        <h1 className="mb-1">Master touch typing with our course!</h1>
+        <h1 className="mb-1">Domina la mecanografía con nuestro curso</h1>
         <p>
-          Explore an effective way to perfect your keyboard skills. Join now and
-          start your journey to typing mastery.
+          Explora una manera efectiva de perfeccionar tus habilidades en el
+          teclado. Únete ahora y comienza tu viaje hacia la maestría en
+          mecanografía.
         </p>
       </Container>
     </section>
