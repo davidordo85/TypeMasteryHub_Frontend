@@ -1,0 +1,53 @@
+.welcome-container {
+    background-image: url('/images/pexels-seppe-machielsen-14011035.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.welcome-container p {
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    /* Ajusta los valores según sea necesario */
+}
+
+.explanation-container {
+    background-color: #212529;
+    opacity: 0.8;
+    background: linear-gradient(135deg, #41414b55 25%, transparent 25%) -37px 0/ 74px 74px,
+        linear-gradient(225deg, #41414b 25%, transparent 25%) -37px 0/ 74px 74px,
+        linear-gradient(315deg, #41414b55 25%, transparent 25%) 0px 0/ 74px 74px,
+        linear-gradient(45deg, #41414b 25%, #212529 25%) 0px 0/ 74px 74px;
+    display: flex;
+}
+
+.more-explanation-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.more-explanation-container div {
+    padding: 2rem;
+}
+
+.explanation-container div h1 {
+    font-size: 1.25rem;
+}
+
+@media (max-width: 500px) {
+    .explanation-container {
+        flex-direction: column;
+
+    }
+
+    .explanation-container div {
+        margin-bottom: 2rem;
+    }
+
+    .more-explanation-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}

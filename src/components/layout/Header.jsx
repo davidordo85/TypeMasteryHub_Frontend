@@ -15,7 +15,7 @@ function Header({ isLogged, onLogout }) {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" className="fixed-top">
         <Container>
           <Navbar.Brand as={Link} to="/">
             TypeMasteryHub

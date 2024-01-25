@@ -6,8 +6,11 @@ function Layout({ children, ...props }) {
   return (
     <div>
       <Header {...props} />
-      <main>{children}</main>
-      <footer>esto es el footer</footer>
+      <main className="bg-secondary">{children}</main>
+      <footer>
+        {/* Foto de seppe machielsen:
+        https://www.pexels.com/es-es/foto/oscuro-internet-abstracto-conexion-14011035/ */}
+      </footer>
     </div>
   );
 }

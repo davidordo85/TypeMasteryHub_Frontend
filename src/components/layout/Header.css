@@ -1,3 +1,11 @@
+main {
+    height: 100vh;
+}
+
 .navbar-toggler {
     display: block !important;
+}
+
+.offcanvas-header button.btn-close {
+    filter: invert(100%) !important;
 }
