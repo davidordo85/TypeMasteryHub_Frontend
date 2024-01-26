@@ -1,6 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import { WelcomePage, LoginPage, RegisterPage, Layout } from './components';
+import {
+  WelcomePage,
+  LoginPage,
+  RegisterPage,
+  Layout,
+  CoursePage,
+} from './components';
 import { PropTypes } from 'prop-types';
 
 function App({ isInitiallyLogged }) {
@@ -14,6 +20,14 @@ function App({ isInitiallyLogged }) {
         element={
           <Layout isLogged={isLogged} onLogout={handleLogout}>
             <WelcomePage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/course"
+        element={
+          <Layout isLogged={isLogged} onLogout={handleLogout}>
+            <CoursePage />
           </Layout>
         }
       />

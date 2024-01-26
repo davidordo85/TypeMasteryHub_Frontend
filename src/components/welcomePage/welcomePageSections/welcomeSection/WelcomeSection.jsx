@@ -1,4 +1,5 @@
 //import React from 'react'
+import { Link } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 
 const WelcomeSection = () => {
@@ -14,7 +15,9 @@ const WelcomeSection = () => {
           como con el curso en línea de TypeMasteryHub. Aprende de manera
           efectiva y eficiente.
         </p>
-        <Button variant="outline-light">Empezar</Button>
+        <Button variant="outline-light" as={Link} to="/course">
+          Empezar
+        </Button>
       </Container>
     </section>
   );

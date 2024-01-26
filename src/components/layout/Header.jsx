@@ -35,7 +35,7 @@ function Header({ isLogged, onLogout }) {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <Nav className="flex-column">
-            <Nav.Link as={Link} to="/courses" className="text-white">
+            <Nav.Link as={Link} to="/course" className="text-white">
               Courses
             </Nav.Link>
             <hr />
