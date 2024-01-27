@@ -1,8 +1,29 @@
+import React from 'react';
 import { Container, ProgressBar } from 'react-bootstrap';
-import { FaStar, FaMedal } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import './CoursePage.css';
+import { getCourse } from '../../api/courses';
 
-function coursePage() {
+function CoursePage() {
+  const [topics, setTopics] = React.useState([]);
+  const now = 0;
+
+  React.useEffect(() => {
+    items();
+  }, []);
+
+  const items = async () => {
+    try {
+      const items = await getCourse();
+      setTopics(items.result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log('ok');
+    }
+  };
+
+  console.log(topics);
   return (
     <div className="main-course-page text-white">
       {/* TODO: falta darle funcionalidad, ver donde ponerlo si aqui o en el navbar */}
@@ -10,25 +31,21 @@ function coursePage() {
         <div className="percentage-complete">
           <h1>Porcentaje completado</h1>
           <div className="mt-2">
-            <ProgressBar animated striped variant="warning" now={20} />
+            <ProgressBar
+              className="bg-dark"
+              animated
+              striped
+              variant="warning"
+              now={now}
+            />
+            <p className="mt-2">{`${now}% completado`}</p>
           </div>
         </div>
         <div className="stars-complete">
           <h1>Estrellas conseguidas</h1>
           <div className="d-flex mt-2">
-            <p className="star-paragraph">3/10</p>
+            <p className="star-paragraph">3/24</p>
             <FaStar color="gold" />
-          </div>
-        </div>
-        <div className="medals-complete">
-          <h1>Medallas conseguidas</h1>
-          <div className="d-flex mt-2">
-            <p className="medal-paragraph">3/10</p>
-            <FaMedal color="gold" />
-            <p className="medal-paragraph silver">3/10</p>
-            <FaMedal color="silver" />
-            <p className="medal-paragraph brown">3/10</p>
-            <FaMedal color="brown" />
           </div>
         </div>
       </Container>
@@ -36,4 +53,4 @@ function coursePage() {
   );
 }
 
-export default coursePage;
+export default CoursePage;
