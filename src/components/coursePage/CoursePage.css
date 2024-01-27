@@ -2,7 +2,27 @@
     margin-top: 3.5rem;
 }
 
-.container-progress div {
-    padding: 0.5rem;
-    border: solid white 0.1rem;
+.star-paragraph {
+    margin-right: 0.5rem;
+
+}
+
+.stars-complete {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.silver,
+.brown {
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .container-progress {
+        flex-direction: column;
+    }
+
+    .stars-complete {
+        margin: 0.5rem 0;
+    }
 }
