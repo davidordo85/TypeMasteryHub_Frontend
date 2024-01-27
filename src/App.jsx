@@ -6,6 +6,7 @@ import {
   RegisterPage,
   Layout,
   CoursePage,
+  NotFoundPage,
 } from './components';
 import { PropTypes } from 'prop-types';
 
@@ -33,6 +34,14 @@ function App({ isInitiallyLogged }) {
       />
       <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route
+        path="*"
+        element={
+          <Layout isLogged={isLogged} onLogout={handleLogout}>
+            <NotFoundPage />
+          </Layout>
+        }
+      />
     </Routes>
   );
 }

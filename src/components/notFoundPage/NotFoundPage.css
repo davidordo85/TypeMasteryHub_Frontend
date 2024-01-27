@@ -1,0 +1,22 @@
+.main-not-found {
+    margin-top: 3.5rem;
+    height: calc(100vh - 3.5rem - 7rem);
+    background-image: url(/images/not_found_image.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-not-found * {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 768px) {
+    .main-not-found {
+        padding-left: 50vw;
+    }
+}
