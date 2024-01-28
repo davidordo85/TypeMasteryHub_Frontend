@@ -9,6 +9,7 @@ import {
   NotFoundPage,
 } from './components';
 import { PropTypes } from 'prop-types';
+import './App.css';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = React.useState(isInitiallyLogged);
