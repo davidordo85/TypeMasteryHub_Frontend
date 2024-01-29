@@ -1,19 +1,19 @@
 //import React from 'react'
-import { Container } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
 import CourseList from './listCourse/CourseList';
 
-function CourseSection({ topics }) {
+function CourseSection({ topics, onTopicClick }) {
   return (
-    <Container>
-      <CourseList topics={topics} />
-    </Container>
+    <div>
+      <CourseList topics={topics} onTopicClick={onTopicClick} />
+    </div>
   );
 }
 
 CourseSection.propTypes = {
-  topics: PropTypes.array,
+  topics: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  onTopicClick: PropTypes.func,
 };
 
 export default CourseSection;

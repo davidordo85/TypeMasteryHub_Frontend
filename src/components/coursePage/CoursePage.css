@@ -12,9 +12,10 @@
     margin-right: 2rem;
 }
 
-.silver,
-.brown {
-    margin-left: 0.5rem;
+.topic-card {
+    width: 8rem;
+    height: 8rem !important;
+    margin: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -25,4 +26,5 @@
     .stars-complete {
         margin: 0.5rem 0;
     }
+
 }
