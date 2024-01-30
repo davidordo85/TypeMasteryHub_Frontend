@@ -57,7 +57,7 @@ function AuthWithApi({ apiSubmit }) {
       onLogin: PropTypes.func,
     };
 
-    AuthWithApiComponent.displayName = `WithApi(${getDisplayName(
+    AuthWithApiComponent.displayName = `AuthWithApi(${getDisplayName(
       WrappedComponent,
     )})`;
     return AuthWithApiComponent;
