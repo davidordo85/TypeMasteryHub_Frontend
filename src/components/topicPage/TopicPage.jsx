@@ -3,16 +3,15 @@ import { getTopicForName } from '../../api/courses';
 import {
   ProgressStartsDisplay,
   CourseSection,
-} from '../coursePage/coursePageSections';
+} from '../shared/courseAndTopicPageSections';
 import AlertComponent from '../shared/alertComponent/AlertComponent';
 import { CourseWithApi } from '../components-hoc';
 import PropTypes from 'prop-types';
 import './TopicPage.css';
 import { Spinner } from 'react-bootstrap';
 
-/* TODO: Poner el Spinner en el centro de la pantalla
-Ya que reutilizo ProgressStartsDisplay y CourseSection cambiarlos de lugar 
-Falta el loader tanto en topicPage como en CoursePage
+/* TODO: Ya que reutilizo ProgressStartsDisplay y CourseSection cambiarlos de lugar 
+Falta el loader en CoursePage
 hacer un button para ir atrás en topicPage para que vaya a la página de Course
 */
 
@@ -22,8 +21,8 @@ function TopicPage({ error, isLoading, data: topic }) {
   return (
     <div className="main-topic-page">
       {isLoading ? (
-        <div className="d-flex justify-content-center align-items-center">
-          <Spinner variant="warning" />
+        <div className="d-flex justify-content-center align-items-center spinner-container">
+          <Spinner variant="warning" className="spinner-topic" />
         </div>
       ) : (
         <>

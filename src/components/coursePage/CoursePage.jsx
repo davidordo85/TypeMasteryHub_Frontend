@@ -1,7 +1,10 @@
 import React from 'react';
 import './CoursePage.css';
 import { getCourse } from '../../api/courses';
-import { CourseSection, ProgressStartsDisplay } from './coursePageSections';
+import {
+  CourseSection,
+  ProgressStartsDisplay,
+} from '../shared/courseAndTopicPageSections';
 import AlertComponent from '../shared/alertComponent/AlertComponent';
 
 function CoursePage() {
