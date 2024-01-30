@@ -1,12 +1,13 @@
 //import React from 'react'
 import { Container, ProgressBar } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
+import './ProgressStartsDisplay.css';
 
 import PropTypes from 'prop-types';
 
 function ProgressStartsDisplay({ now }) {
   return (
-    <Container className="container-progress p-5 d-flex align-items-around">
+    <Container className="container-progress p-3 d-flex align-items-center justify-content-center text-white">
       {/* TODO: falta darle funcionalidad, ver donde ponerlo si aqui o en el navbar */}
       <div className="percentage-complete">
         <h1>Porcentaje completado</h1>

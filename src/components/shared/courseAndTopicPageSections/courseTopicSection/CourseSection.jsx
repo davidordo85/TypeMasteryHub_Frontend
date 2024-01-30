@@ -2,6 +2,7 @@
 
 import PropTypes from 'prop-types';
 import CourseList from './listCourse/CourseList';
+import './CourseSection.css';
 
 function CourseSection({ course }) {
   return (

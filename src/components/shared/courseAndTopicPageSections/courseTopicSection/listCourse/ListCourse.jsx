@@ -11,8 +11,11 @@ function ListCourse({ name, title, order }) {
     }
   };
   return (
-    <Card className="topic-card" onClick={event => handleClick(event, name)}>
-      <Card.Title className="text-center">{order}</Card.Title>
+    <Card
+      className="topic-card bg-dark text-white"
+      onClick={event => handleClick(event, name)}
+    >
+      <Card.Title className="text-center mt-2">{order}</Card.Title>
       <Card.Body className="text-center">{name || title}</Card.Body>
     </Card>
   );

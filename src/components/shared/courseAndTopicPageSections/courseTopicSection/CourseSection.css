@@ -1,0 +1,6 @@
+.topic-card {
+    width: 9rem;
+    height: 9rem !important;
+    margin: 2rem 1rem;
+    cursor: pointer;
+}

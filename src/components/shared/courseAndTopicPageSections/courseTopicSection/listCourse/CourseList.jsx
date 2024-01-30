@@ -7,10 +7,10 @@ function CourseList({ course }) {
 
   const renderTopics = (topic, index) => <ListCourse key={index} {...topic} />;
   return (
-    <div>
+    <div className="container">
       {course.map((singleCourse, index) => (
         <div key={index}>
-          <h1 className="display-5 text-center">
+          <h1 className="display-5 text-center text-white">
             {singleCourse.courseName || singleCourse.topicName}
           </h1>
           <div className="d-flex flex-wrap justify-content-center align-items-center course-section">
