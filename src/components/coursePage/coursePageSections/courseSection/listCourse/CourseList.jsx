@@ -10,9 +10,12 @@ function CourseList({ course }) {
     <div>
       {course.map((singleCourse, index) => (
         <div key={index}>
-          <h1 className="display-5 text-center">{singleCourse.courseName}</h1>
+          <h1 className="display-5 text-center">
+            {singleCourse.courseName || singleCourse.topicName}
+          </h1>
           <div className="d-flex flex-wrap justify-content-center align-items-center course-section">
-            {singleCourse.topics.map(renderTopics)}
+            {singleCourse.topics?.map(renderTopics) ||
+              singleCourse.tests?.map(renderTopics)}
           </div>
         </div>
       ))}
@@ -23,13 +26,20 @@ function CourseList({ course }) {
 CourseList.propTypes = {
   course: PropTypes.arrayOf(
     PropTypes.shape({
-      courseName: PropTypes.string.isRequired,
+      courseName: PropTypes.string,
+      topicName: PropTypes.string,
       topics: PropTypes.arrayOf(
         PropTypes.shape({
           name: PropTypes.string.isRequired,
           order: PropTypes.number.isRequired,
         }),
-      ).isRequired,
+      ),
+      tests: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          order: PropTypes.number.isRequired,
+        }),
+      ),
     }),
   ),
 };

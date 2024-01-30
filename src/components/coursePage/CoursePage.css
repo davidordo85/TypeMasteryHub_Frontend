@@ -16,6 +16,7 @@
     width: 9rem;
     height: 9rem !important;
     margin: 0.5rem;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
