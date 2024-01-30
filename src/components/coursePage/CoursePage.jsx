@@ -1,6 +1,6 @@
 import React from 'react';
 import './CoursePage.css';
-import { getCourse, getTopicForName } from '../../api/courses';
+import { getCourse } from '../../api/courses';
 import { CourseSection, ProgressStartsDisplay } from './coursePageSections';
 import AlertComponent from '../shared/alertComponent/AlertComponent';
 
@@ -24,17 +24,6 @@ function CoursePage() {
     }
   };
 
-  const handleTopicClick = async (event, topicName) => {
-    try {
-      const items = await getTopicForName(topicName);
-      setData(items.result);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      console.log('ok getTopicForName');
-    }
-  };
-
   return (
     <div className="main-course-page text-white">
       <ProgressStartsDisplay now={now} />
@@ -43,7 +32,7 @@ function CoursePage() {
           <AlertComponent error={error.message} />
         </div>
       ) : (
-        <CourseSection topics={data} onTopicClick={handleTopicClick} />
+        <CourseSection course={data} />
       )}
     </div>
   );

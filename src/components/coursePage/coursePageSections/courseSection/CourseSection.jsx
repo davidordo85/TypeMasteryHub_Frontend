@@ -3,17 +3,16 @@
 import PropTypes from 'prop-types';
 import CourseList from './listCourse/CourseList';
 
-function CourseSection({ topics, onTopicClick }) {
+function CourseSection({ course }) {
   return (
     <div>
-      <CourseList topics={topics} onTopicClick={onTopicClick} />
+      <CourseList course={course} />
     </div>
   );
 }
 
 CourseSection.propTypes = {
-  topics: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  onTopicClick: PropTypes.func,
+  course: PropTypes.array,
 };
 
 export default CourseSection;
