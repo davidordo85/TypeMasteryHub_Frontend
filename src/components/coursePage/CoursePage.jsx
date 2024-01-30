@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 import './CoursePage.css';
 import { getCourse } from '../../api/courses';
 import {
@@ -6,39 +6,46 @@ import {
   ProgressStartsDisplay,
 } from '../shared/courseAndTopicPageSections';
 import AlertComponent from '../shared/alertComponent/AlertComponent';
+import PropTypes from 'prop-types';
+import { Spinner } from 'react-bootstrap';
+import { CourseWithApi } from '../components-hoc';
 
-function CoursePage() {
-  const [data, setData] = React.useState([]);
-  const [error, setError] = React.useState(null);
+function CoursePage({ error, isLoading, data: course }) {
   const now = 5;
-
-  React.useEffect(() => {
-    items();
-  }, []);
-
-  const items = async () => {
-    try {
-      const items = await getCourse();
-      setData(items.result);
-    } catch (error) {
-      setError(error);
-    } finally {
-      console.log('ok getCourse');
-    }
-  };
 
   return (
     <div className="main-course-page text-white">
-      <ProgressStartsDisplay now={now} />
-      {error ? (
-        <div className="d-flex justify-content-center align-items-center">
-          <AlertComponent error={error.message} />
+      {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center spinner-container">
+          <Spinner variant="warning" className="spinner-topic" />
         </div>
       ) : (
-        <CourseSection course={data} />
+        <>
+          <ProgressStartsDisplay now={now} />
+          {error ? (
+            <div className="d-flex justify-content-center align-items-center">
+              <AlertComponent error={error.message} />
+            </div>
+          ) : (
+            <CourseSection course={course} />
+          )}
+        </>
       )}
     </div>
   );
 }
 
-export default CoursePage;
+const courseWithApiConfig = CourseWithApi({
+  initialData: [],
+  apiCall: getCourse,
+});
+
+const CoursePageCourseWhitApi = courseWithApiConfig(CoursePage);
+
+CoursePage.propTypes = {
+  error: PropTypes.object,
+  isLoading: PropTypes.bool,
+  data: PropTypes.array,
+};
+
+export default CoursePageCourseWhitApi;

@@ -10,10 +10,8 @@ import PropTypes from 'prop-types';
 import './TopicPage.css';
 import { Spinner } from 'react-bootstrap';
 
-/* TODO: Ya que reutilizo ProgressStartsDisplay y CourseSection cambiarlos de lugar 
-Falta el loader en CoursePage
-hacer un button para ir atrás en topicPage para que vaya a la página de Course
-*/
+/* TODO: hacer un button para ir atrás en topicPage para que vaya a la página de Course
+ */
 
 function TopicPage({ error, isLoading, data: topic }) {
   const now = 1;
@@ -40,12 +38,12 @@ function TopicPage({ error, isLoading, data: topic }) {
   );
 }
 
-const courseWithApiConfig = CourseWithApi({
+const topicWithApiConfig = CourseWithApi({
   initialData: [],
   apiCall: getTopicForName,
 });
 
-const TopicPageCourseWhitApi = courseWithApiConfig(TopicPage);
+const TopicPageCourseWhitApi = topicWithApiConfig(TopicPage);
 
 TopicPage.propTypes = {
   error: PropTypes.object,
