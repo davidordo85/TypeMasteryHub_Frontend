@@ -16,21 +16,27 @@ function CourseWithApi({ initialData, apiCall }) {
       const params = useParams();
 
       React.useEffect(() => {
-        items(params.name);
-      }, [params.name]);
+        const items = async () => {
+          setError(null);
+          setIsLoading(true);
+          try {
+            let apiParams;
+            if (params.name) {
+              apiParams = params.name;
+            } else if (params.topicName && params.title) {
+              apiParams = { topicName: params.topicName, title: params.title };
+            }
+            const data = await apiCall(apiParams);
+            setData(data.result);
+          } catch (error) {
+            setError(error);
+          } finally {
+            setIsLoading(false);
+          }
+        };
 
-      const items = async name => {
-        setError();
-        setIsLoading(true);
-        try {
-          const data = await apiCall(name);
-          setData(data.result);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+        items();
+      }, [params.name, params.title, params.topicName]);
 
       return (
         <WrappedComponent

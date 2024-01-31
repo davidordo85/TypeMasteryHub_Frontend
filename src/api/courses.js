@@ -10,3 +10,8 @@ export const getTopicForName = name => {
   const url = `${coursesBaseUrl}/${name}`;
   return client.get(url);
 };
+
+export const getTestAndPerformance = ({ topicName, title }) => {
+  const url = `${coursesBaseUrl}/test/${topicName}/${title}`;
+  return client.get(url);
+};
