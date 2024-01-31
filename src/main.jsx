@@ -5,7 +5,6 @@ import App from './App.jsx';
 import storage from './utils/storage.js';
 import { configureClient } from './api/client.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './reset.css';
 
 const accessToken = storage.get('auth');
 configureClient({ accessToken });

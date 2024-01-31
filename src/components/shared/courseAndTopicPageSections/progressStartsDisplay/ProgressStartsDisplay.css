@@ -1,3 +1,8 @@
+.percentage-complete h1,
+.stars-complete h1 {
+    font-size: 1rem;
+}
+
 .star-paragraph {
     margin-right: 0.5rem;
 }
