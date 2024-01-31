@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import ListCourse from './ListCourse';
 
 function CourseList({ course }) {
-  console.log(course);
-
   const renderTopics = (topic, index) => <ListCourse key={index} {...topic} />;
   return (
     <div className="container">

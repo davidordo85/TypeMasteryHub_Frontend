@@ -10,10 +10,6 @@ import PropTypes from 'prop-types';
 import './TopicPage.css';
 import { Spinner } from 'react-bootstrap';
 
-/* TODO: hacer un button para ir atrás en topicPage para que vaya a la página de Course
-  Mejorar la vista de las paginas coursePage y topicPage
- */
-
 function TopicPage({ error, isLoading, data: topic }) {
   const now = 1;
 
