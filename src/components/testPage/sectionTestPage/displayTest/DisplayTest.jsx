@@ -8,7 +8,6 @@ function DisplayTest({ text, character_correct }) {
     return characters.map((char, index) => {
       const isCorrect = index < character_correct;
 
-      // Aplicar estilo verde solo a la tecla correcta
       if (isCorrect) {
         return (
           <span key={index} style={{ color: 'green' }}>
@@ -36,7 +35,6 @@ function DisplayTest({ text, character_correct }) {
 
 DisplayTest.propTypes = {
   text: PropTypes.string,
-  errorCount: PropTypes.number,
   character_correct: PropTypes.number,
 };
 
