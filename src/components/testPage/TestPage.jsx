@@ -2,7 +2,7 @@ import React from 'react';
 import { getTestAndPerformance } from '../../api/courses';
 import AlertComponent from '../shared/alertComponent/AlertComponent';
 import { CourseWithApi } from '../components-hoc';
-import { CountDownClock, DisplayTest } from './sectionTestPage';
+import { CountDownClock, DisplayTest, ResultTestCard } from './sectionTestPage';
 import PropTypes from 'prop-types';
 import { Button, Spinner } from 'react-bootstrap';
 import './TestPage.css';
@@ -16,9 +16,10 @@ function TestPage({ error, isLoading, data: testsData }) {
   const [indexCharacterText, setIndexCharacterText] = React.useState(0);
   const [errorCount, setErrorCount] = React.useState(0);
   const inputRef = React.useRef(null);
+  const [time, setTime] = React.useState(0);
 
   const getTime = time => {
-    console.log('time', time);
+    setTime(time);
   };
 
   const playErrorSound = () => {
@@ -90,7 +91,14 @@ function TestPage({ error, isLoading, data: testsData }) {
                   </Button>
                 </div>
               ) : finishTest ? (
-                <p>juego terminado</p>
+                <div className="d-flex justify-content-center mt-5">
+                  <ResultTestCard
+                    errorCount={errorCount}
+                    time_test={time}
+                    length_test={test.test.text_test.length}
+                    performance={test.performance}
+                  />
+                </div>
               ) : (
                 <div className="m-5">
                   <DisplayTest
