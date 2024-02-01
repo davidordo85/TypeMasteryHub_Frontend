@@ -16,6 +16,12 @@ function TestPage({ error, isLoading, data: testsData }) {
   const [errorCount, setErrorCount] = React.useState(0);
   const inputRef = React.useRef(null);
 
+  const playErrorSound = () => {
+    /*TODO: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">Pixabay</a> */
+    const audio = new Audio('../../../public/sounds/negative_beeps-6008.mp3');
+    audio.play();
+  };
+
   const handleKeyPress = event => {
     const enteredText = event.target.value;
     const lastPressedChar = enteredText.charAt(enteredText.length - 1);
@@ -28,6 +34,7 @@ function TestPage({ error, isLoading, data: testsData }) {
     } else if (
       testText[indexCharacterText] !== enteredText[indexCharacterText]
     ) {
+      playErrorSound();
       setErrorCount(errorCount + 1);
     }
   };

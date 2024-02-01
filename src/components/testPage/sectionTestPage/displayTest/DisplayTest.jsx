@@ -1,32 +1,26 @@
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-function DisplayTest({ text, errorCount, character_correct }) {
+function DisplayTest({ text, character_correct }) {
   const characters = text.split('');
 
   const renderText = () => {
-    let foundError = false;
-
     return characters.map((char, index) => {
       const isCorrect = index < character_correct;
-      const isIncorrect =
-        index >= character_correct && index < character_correct + errorCount;
+
+      // Aplicar estilo verde solo a la tecla correcta
       if (isCorrect) {
-        foundError = false;
         return (
           <span key={index} style={{ color: 'green' }}>
             {char}
           </span>
         );
-      } else if (isIncorrect && !foundError) {
-        foundError = true;
+      } else {
         return (
-          <span key={index} style={{ color: 'red' }}>
+          <span key={index} style={{ color: 'black' }}>
             {char}
           </span>
         );
-      } else {
-        return <span key={index}>{char}</span>;
       }
     });
   };
