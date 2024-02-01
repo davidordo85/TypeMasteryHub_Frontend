@@ -10,11 +10,16 @@ import './TestPage.css';
 function TestPage({ error, isLoading, data: testsData }) {
   const test = testsData[0];
   const [startTest, setStartTest] = React.useState(false);
+  const [finishTest, setFinishTest] = React.useState(false);
   const [startCountdown, setStartCountdown] = React.useState(false);
   const [userInput, setUserInput] = React.useState('');
   const [indexCharacterText, setIndexCharacterText] = React.useState(0);
   const [errorCount, setErrorCount] = React.useState(0);
   const inputRef = React.useRef(null);
+
+  const getTime = time => {
+    console.log('time', time);
+  };
 
   const playErrorSound = () => {
     /*TODO: Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6008">Pixabay</a> */
@@ -30,7 +35,15 @@ function TestPage({ error, isLoading, data: testsData }) {
 
     const testText = test.test.text_test;
     if (testText[indexCharacterText] === lastPressedChar) {
-      setIndexCharacterText(indexCharacterText + 1);
+      if (testText.length <= indexCharacterText + 1) {
+        // El test ha finalizado
+        console.log('Test completed!');
+        setIndexCharacterText(indexCharacterText + 1);
+        setFinishTest(true);
+        setStartTest(false);
+      } else {
+        setIndexCharacterText(indexCharacterText + 1);
+      }
     } else if (
       testText[indexCharacterText] !== enteredText[indexCharacterText]
     ) {
@@ -59,10 +72,14 @@ function TestPage({ error, isLoading, data: testsData }) {
             <div className="container-test-page">
               <div className="d-flex justify-content-around pt-3">
                 <h1 className="display-5">{test.test.title}</h1>
-                <CountDownClock startCountdown={startCountdown} />
+                <CountDownClock
+                  startCountdown={startCountdown}
+                  stopCountdown={finishTest}
+                  getTime={getTime}
+                />
               </div>
 
-              {!startTest ? (
+              {!startTest && !finishTest ? (
                 <div className="d-flex justify-content-center ">
                   <Button
                     size="lg"
@@ -72,6 +89,8 @@ function TestPage({ error, isLoading, data: testsData }) {
                     Start
                   </Button>
                 </div>
+              ) : finishTest ? (
+                <p>juego terminado</p>
               ) : (
                 <div className="m-5">
                   <DisplayTest
