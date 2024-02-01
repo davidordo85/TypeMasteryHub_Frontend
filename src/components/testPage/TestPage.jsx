@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { Button, Spinner } from 'react-bootstrap';
 import './TestPage.css';
 
+//TODO: refactorizar un poco el codigo
 function TestPage({ error, isLoading, data: testsData }) {
   const test = testsData[0];
   const [startTest, setStartTest] = React.useState(false);
@@ -16,10 +17,10 @@ function TestPage({ error, isLoading, data: testsData }) {
   const [indexCharacterText, setIndexCharacterText] = React.useState(0);
   const [errorCount, setErrorCount] = React.useState(0);
   const inputRef = React.useRef(null);
-  const [time, setTime] = React.useState(0);
+  const [timeTest, setTimeTest] = React.useState(0);
 
   const getTime = time => {
-    setTime(time);
+    setTimeTest(time);
   };
 
   const playErrorSound = () => {
@@ -37,8 +38,6 @@ function TestPage({ error, isLoading, data: testsData }) {
     const testText = test.test.text_test;
     if (testText[indexCharacterText] === lastPressedChar) {
       if (testText.length <= indexCharacterText + 1) {
-        // El test ha finalizado
-        console.log('Test completed!');
         setIndexCharacterText(indexCharacterText + 1);
         setFinishTest(true);
         setStartTest(false);
@@ -74,6 +73,7 @@ function TestPage({ error, isLoading, data: testsData }) {
               <div className="d-flex justify-content-around pt-3">
                 <h1 className="display-5">{test.test.title}</h1>
                 <CountDownClock
+                  maxTime={test.performance.max_time}
                   startCountdown={startCountdown}
                   stopCountdown={finishTest}
                   getTime={getTime}
@@ -94,8 +94,8 @@ function TestPage({ error, isLoading, data: testsData }) {
                 <div className="d-flex justify-content-center mt-5">
                   <ResultTestCard
                     errorCount={errorCount}
-                    time_test={time}
-                    length_test={test.test.text_test.length}
+                    timeTest={timeTest}
+                    lengthTest={test.test.text_test.length}
                     performance={test.performance}
                   />
                 </div>
@@ -104,7 +104,7 @@ function TestPage({ error, isLoading, data: testsData }) {
                   <DisplayTest
                     text={test.test.text_test}
                     errorCount={errorCount}
-                    character_correct={indexCharacterText}
+                    characterCorrect={indexCharacterText}
                   />
                   <input
                     ref={inputRef}
@@ -125,7 +125,17 @@ function TestPage({ error, isLoading, data: testsData }) {
 
 const testWithApiConfig = CourseWithApi({
   initialData: [
-    { performance: {}, test: { title: '', order: 0, text_test: '' } },
+    {
+      performance: {
+        max_time: 0,
+        levels: {
+          copper: { max_time: 0, stars: 0 },
+          silver: { max_time: 0, stars: 0 },
+          gold: { max_time: 0, stars: 0 },
+        },
+      },
+      test: { title: '', order: 0, text_test: '' },
+    },
   ],
   apiCall: getTestAndPerformance,
 });

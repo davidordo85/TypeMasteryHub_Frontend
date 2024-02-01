@@ -4,8 +4,13 @@ import { Badge } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './CountDownClock.css';
 
-const CountdownClock = ({ startCountdown, stopCountdown, getTime }) => {
-  const [timeLeft, setTimeLeft] = React.useState(180);
+const CountdownClock = ({
+  maxTime,
+  startCountdown,
+  stopCountdown,
+  getTime,
+}) => {
+  const [timeLeft, setTimeLeft] = React.useState(maxTime);
   const timerRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -44,6 +49,7 @@ const CountdownClock = ({ startCountdown, stopCountdown, getTime }) => {
 };
 
 CountdownClock.propTypes = {
+  maxTime: PropTypes.number,
   startCountdown: PropTypes.bool,
   stopCountdown: PropTypes.bool,
   getTime: PropTypes.func,

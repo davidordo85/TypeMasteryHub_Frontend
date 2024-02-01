@@ -1,12 +1,12 @@
 import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-function DisplayTest({ text, character_correct }) {
+function DisplayTest({ text, characterCorrect }) {
   const characters = text.split('');
 
   const renderText = () => {
     return characters.map((char, index) => {
-      const isCorrect = index < character_correct;
+      const isCorrect = index < characterCorrect;
 
       if (isCorrect) {
         return (
@@ -35,7 +35,7 @@ function DisplayTest({ text, character_correct }) {
 
 DisplayTest.propTypes = {
   text: PropTypes.string,
-  character_correct: PropTypes.number,
+  characterCorrect: PropTypes.number,
 };
 
 export default DisplayTest;
