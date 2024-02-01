@@ -1,3 +1,8 @@
 .main-test-page {
     margin-top: 3.5rem;
 }
+
+.offscreen {
+    position: absolute;
+    left: -99999999px
+}
