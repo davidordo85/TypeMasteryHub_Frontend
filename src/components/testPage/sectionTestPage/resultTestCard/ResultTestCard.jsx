@@ -12,32 +12,19 @@ import {
   CardSubtitle,
 } from 'react-bootstrap';
 import StarsComponent from './starsComponent/StarsComponent';
-//TODO: refactorizar un poco el codigo
+import { CalculateResults, compose } from '../../../components-hoc';
 
-function ResultTestCard({ errorCount, timeTest, lengthTest, performance }) {
-  const timeCompleteTest = performance.max_time - timeTest;
-
-  const calculatePPM = (timeCompleteTest, lengthTest) => {
-    const timeInMinutes = timeCompleteTest / 60;
-    const ppm = (lengthTest - errorCount) / timeInMinutes;
-    return Math.round(ppm);
-  };
-  const ppmResult = calculatePPM(timeCompleteTest, lengthTest);
-
+function ResultTestCard({ ppm, resultStars, timeCompleteTest, errorCount }) {
   return (
     <Card>
       <CardHeader>Prueba Completada</CardHeader>
       <CardBody className="d-flex flex-column">
         <CardTitle>Estrellas conseguidas: </CardTitle>
         <CardSubtitle className="text-center">
-          <StarsComponent
-            starsResult={performance}
-            timeCompleteTest={timeCompleteTest}
-            timeTest={timeTest}
-          />
+          <StarsComponent resultStars={resultStars} />
         </CardSubtitle>
         <CardTitle>Pulsaciones por minuto: </CardTitle>
-        <CardSubtitle>{`${ppmResult} ppm`}</CardSubtitle>
+        <CardSubtitle>{`${ppm} ppm`}</CardSubtitle>
         <CardTitle>Errores: </CardTitle>
         <CardSubtitle>{`- Has cometido ${errorCount} ${
           errorCount > 1 ? `errores` : `error`
@@ -61,11 +48,20 @@ function ResultTestCard({ errorCount, timeTest, lengthTest, performance }) {
   );
 }
 
+/* eslint-disable react/display-name */
+
+const hoc = WrappedComponent => props => <WrappedComponent {...props} />;
+const CalculateResultConfig = CalculateResults({});
+const CalculateResultTestCard = compose(
+  CalculateResultConfig,
+  hoc,
+)(ResultTestCard);
+
 ResultTestCard.propTypes = {
+  ppm: PropTypes.number,
+  resultStars: PropTypes.object,
+  timeCompleteTest: PropTypes.number,
   errorCount: PropTypes.number,
-  timeTest: PropTypes.number,
-  lengthTest: PropTypes.number,
-  performance: PropTypes.object,
 };
 
-export default ResultTestCard;
+export default CalculateResultTestCard;
