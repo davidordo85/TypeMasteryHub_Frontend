@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Button, Spinner } from 'react-bootstrap';
 import './TestPage.css';
 
-//TODO: refactorizar un poco el codigo
+//TODO: refactorizar un poco el codigo, reiniciar el tiempo al hacer click en el button de volver a empezar.
 function TestPage({ error, isLoading, data: testsData }) {
   const test = testsData[0];
   const [startTest, setStartTest] = React.useState(false);
@@ -58,6 +58,17 @@ function TestPage({ error, isLoading, data: testsData }) {
     }
   }, [startTest, indexCharacterText, errorCount]);
 
+  const handleStartTestAgain = () => {
+    // Reiniciar el estado del test
+    setFinishTest(false);
+    setStartTest(false);
+    setStartCountdown(false);
+    setUserInput('');
+    setIndexCharacterText(0);
+    setErrorCount(0);
+    setTimeTest(0);
+  };
+
   return (
     <div className="main-test-page">
       {isLoading ? (
@@ -75,6 +86,7 @@ function TestPage({ error, isLoading, data: testsData }) {
                 <CountDownClock
                   maxTime={test.performance.max_time}
                   startCountdown={startCountdown}
+                  startTest={startTest}
                   stopCountdown={finishTest}
                   getTime={getTime}
                 />
@@ -97,6 +109,7 @@ function TestPage({ error, isLoading, data: testsData }) {
                     timeTest={timeTest}
                     lengthTest={test.test.text_test.length}
                     performance={test.performance}
+                    onStartTestAgain={handleStartTestAgain}
                   />
                 </div>
               ) : (

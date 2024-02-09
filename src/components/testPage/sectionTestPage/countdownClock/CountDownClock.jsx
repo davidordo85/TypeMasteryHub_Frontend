@@ -9,21 +9,24 @@ const CountdownClock = ({
   startCountdown,
   stopCountdown,
   getTime,
+  startTest,
 }) => {
   const [timeLeft, setTimeLeft] = React.useState(maxTime);
   const timerRef = React.useRef(null);
 
   React.useEffect(() => {
     if (startCountdown) {
+      if (startTest) {
+        setTimeLeft(maxTime);
+      }
+
       timerRef.current = setInterval(() => {
         setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
       }, 1000);
-    }
 
-    return () => {
-      clearInterval(timerRef.current);
-    };
-  }, [startCountdown]);
+      return () => clearInterval(timerRef.current);
+    }
+  }, [startTest, startCountdown, maxTime]);
 
   React.useEffect(() => {
     if (stopCountdown) {
@@ -52,6 +55,7 @@ CountdownClock.propTypes = {
   maxTime: PropTypes.number,
   startCountdown: PropTypes.bool,
   stopCountdown: PropTypes.bool,
+  startTest: PropTypes.bool,
   getTime: PropTypes.func,
 };
 

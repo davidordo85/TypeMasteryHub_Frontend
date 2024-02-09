@@ -8,13 +8,20 @@ import {
   CardTitle,
   CardHeader,
   CardFooter,
-  Button,
   CardSubtitle,
 } from 'react-bootstrap';
 import StarsComponent from './starsComponent/StarsComponent';
+import TestControl from './testControl/TestControl';
 import { CalculateResults, compose } from '../../../components-hoc';
+//TODO: hacer el onSubmit de guardar resultado
 
-function ResultTestCard({ ppm, resultStars, timeCompleteTest, errorCount }) {
+function ResultTestCard({
+  ppm,
+  resultStars,
+  timeCompleteTest,
+  errorCount,
+  onStartTestAgain,
+}) {
   return (
     <Card>
       <CardHeader>Prueba Completada</CardHeader>
@@ -36,13 +43,8 @@ function ResultTestCard({ ppm, resultStars, timeCompleteTest, errorCount }) {
         </CardText>
       </CardBody>
 
-      <CardFooter className="d-flex justify-content-center">
-        {timeCompleteTest <= 180 ? (
-          /* TODO: falta darle la funcionalidad a los buttons */
-          <Button>Guardar resultados</Button>
-        ) : (
-          <Button>Volver a empezar</Button>
-        )}
+      <CardFooter>
+        <TestControl onStartTestAgain={onStartTestAgain} />
       </CardFooter>
     </Card>
   );
@@ -62,6 +64,7 @@ ResultTestCard.propTypes = {
   resultStars: PropTypes.object,
   timeCompleteTest: PropTypes.number,
   errorCount: PropTypes.number,
+  onStartTestAgain: PropTypes.func,
 };
 
 export default CalculateResultTestCard;
