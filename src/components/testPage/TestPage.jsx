@@ -32,6 +32,7 @@ function TestPage({ error, isLoading, data: testsData }) {
   const handleKeyPress = event => {
     const enteredText = event.target.value;
     const lastPressedChar = enteredText.charAt(enteredText.length - 1);
+
     setStartCountdown(true);
     setUserInput(enteredText);
 
@@ -59,7 +60,6 @@ function TestPage({ error, isLoading, data: testsData }) {
   }, [startTest, indexCharacterText, errorCount]);
 
   const handleStartTestAgain = () => {
-    // Reiniciar el estado del test
     setFinishTest(false);
     setStartTest(false);
     setStartCountdown(false);
