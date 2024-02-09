@@ -16,6 +16,8 @@ import { CalculateResults, compose } from '../../../components-hoc';
 //TODO: hacer el onSubmit de guardar resultado
 
 function ResultTestCard({
+  id_topic,
+  id_test,
   ppm,
   resultStars,
   timeCompleteTest,
@@ -44,7 +46,14 @@ function ResultTestCard({
       </CardBody>
 
       <CardFooter>
-        <TestControl onStartTestAgain={onStartTestAgain} />
+        <TestControl
+          id_topic={id_topic}
+          id_test={id_test}
+          errorCount={errorCount}
+          ppm={ppm}
+          stars={resultStars.props.children.length}
+          onStartTestAgain={onStartTestAgain}
+        />
       </CardFooter>
     </Card>
   );
@@ -60,6 +69,8 @@ const CalculateResultTestCard = compose(
 )(ResultTestCard);
 
 ResultTestCard.propTypes = {
+  id_topic: PropTypes.string,
+  id_test: PropTypes.string,
   ppm: PropTypes.number,
   resultStars: PropTypes.object,
   timeCompleteTest: PropTypes.number,

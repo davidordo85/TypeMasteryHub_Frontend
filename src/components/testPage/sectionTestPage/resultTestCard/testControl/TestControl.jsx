@@ -2,17 +2,41 @@
 import { Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { addResult } from '../../../../../api/auth';
 
-function TestControl({ onStartTestAgain }) {
+function TestControl({
+  id_topic,
+  id_test,
+  //errorCount,
+  ppm,
+  stars,
+  onStartTestAgain,
+}) {
+  const result = {
+    id_topic: id_topic,
+    id_test: id_test,
+    stars: stars,
+    ppm: ppm,
+  };
   const navigate = useNavigate();
 
   const goBackHandler = () => {
     navigate(-1);
   };
+
+  const handleSubmit = async () => {
+    try {
+      await addResult(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="d-flex justify-content-center flex-column">
       <div className="d-flex justify-content-center flex-column mb-2">
-        <Button className="mb-2">Guardar resultado</Button>
+        <Button type="submit" onClick={handleSubmit} className="mb-2">
+          Guardar resultado
+        </Button>
         <Button onClick={onStartTestAgain}>Volver a empezar</Button>
       </div>
       <div className="d-flex justify-content-around">
@@ -27,6 +51,11 @@ function TestControl({ onStartTestAgain }) {
 }
 
 TestControl.propTypes = {
+  id_topic: PropTypes.string,
+  id_test: PropTypes.string,
+  errorCount: PropTypes.number,
+  ppm: PropTypes.number,
+  stars: PropTypes.number,
   onStartTestAgain: PropTypes.func,
 };
 
