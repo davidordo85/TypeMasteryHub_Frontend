@@ -105,8 +105,8 @@ function TestPage({ error, isLoading, data: testsData }) {
               ) : finishTest ? (
                 <div className="d-flex justify-content-center mt-5">
                   <ResultTestCard
-                    id_topic={test.id_topic}
-                    id_test={test.test._id}
+                    topic_name={test.topic_name}
+                    test_name={test.test.title}
                     errorCount={errorCount}
                     timeTest={timeTest}
                     lengthTest={test.test.text_test.length}

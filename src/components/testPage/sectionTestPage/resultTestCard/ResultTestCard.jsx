@@ -13,11 +13,11 @@ import {
 import StarsComponent from './starsComponent/StarsComponent';
 import TestControl from './testControl/TestControl';
 import { CalculateResults, compose } from '../../../components-hoc';
-//TODO: hacer el onSubmit de guardar resultado
+//TODO: mejorar la visualización de este componente
 
 function ResultTestCard({
-  id_topic,
-  id_test,
+  topic_name,
+  test_name,
   ppm,
   resultStars,
   timeCompleteTest,
@@ -25,7 +25,7 @@ function ResultTestCard({
   onStartTestAgain,
 }) {
   return (
-    <Card>
+    <Card style={{ minWidth: '70vw', marginBottom: '3rem' }}>
       <CardHeader>Prueba Completada</CardHeader>
       <CardBody className="d-flex flex-column">
         <CardTitle>Estrellas conseguidas: </CardTitle>
@@ -47,12 +47,13 @@ function ResultTestCard({
 
       <CardFooter>
         <TestControl
-          id_topic={id_topic}
-          id_test={id_test}
+          topic_name={topic_name}
+          test_name={test_name}
           errorCount={errorCount}
           ppm={ppm}
           stars={resultStars.props.children.length}
           onStartTestAgain={onStartTestAgain}
+          timeCompleteTest={timeCompleteTest}
         />
       </CardFooter>
     </Card>
@@ -69,8 +70,8 @@ const CalculateResultTestCard = compose(
 )(ResultTestCard);
 
 ResultTestCard.propTypes = {
-  id_topic: PropTypes.string,
-  id_test: PropTypes.string,
+  topic_name: PropTypes.string,
+  test_name: PropTypes.string,
   ppm: PropTypes.number,
   resultStars: PropTypes.object,
   timeCompleteTest: PropTypes.number,
