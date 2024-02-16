@@ -11,8 +11,6 @@ import { Spinner } from 'react-bootstrap';
 import { CourseWithApi } from '../components-hoc';
 
 function CoursePage({ error, isLoading, data: course }) {
-  const now = 5;
-
   return (
     <div className="main-course-page text-white">
       {isLoading ? (
@@ -21,7 +19,7 @@ function CoursePage({ error, isLoading, data: course }) {
         </div>
       ) : (
         <>
-          <ProgressStartsDisplay now={now} />
+          <ProgressStartsDisplay course={course} />
           {error ? (
             <div className="d-flex justify-content-center align-items-center">
               <AlertComponent error={error.message} />

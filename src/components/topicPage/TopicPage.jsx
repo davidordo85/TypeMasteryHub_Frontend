@@ -11,8 +11,6 @@ import './TopicPage.css';
 import { Spinner } from 'react-bootstrap';
 
 function TopicPage({ error, isLoading, data: topic }) {
-  const now = 1;
-
   return (
     <div className="main-topic-page">
       {isLoading ? (
@@ -21,7 +19,7 @@ function TopicPage({ error, isLoading, data: topic }) {
         </div>
       ) : (
         <>
-          <ProgressStartsDisplay now={now} />
+          <ProgressStartsDisplay topic={topic} />
           {error ? (
             <div className="d-flex justify-content-center align-items-center">
               <AlertComponent error={error.message} />
